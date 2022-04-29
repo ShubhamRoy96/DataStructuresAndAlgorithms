@@ -10,7 +10,7 @@ namespace ReverseStringByRecursion
         }
 
         static string ReverseStringByRecursion(string value){
-            if(value.Length == 1){
+            if(value.Length <= 1){
                 return value;
             }
             return value[value.Length - 1] + ReverseStringByRecursion(value.Substring(0, value.Length - 1));
