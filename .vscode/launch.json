@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch Array",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}/Array/bin/Debug/net6.0/Array.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}/Array",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": ".NET Core Launch LinkedList",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}/LinkedList/bin/Debug/net6.0/LinkedList.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}/LinkedList",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}
