@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BinarySearchTree
 {
@@ -13,6 +15,8 @@ namespace BinarySearchTree
             tree.insert(14);
             tree.insert(169);
             tree.insert(50);
+
+            var BFSTree = tree.BreadthFirstSearch();
         }
     }
 
@@ -59,7 +63,7 @@ namespace BinarySearchTree
                         }
                         currentNode = currentNode.Left;
                     }
-                    else
+                    else //right
                     {
                         if(currentNode.Right == null)
                         {
@@ -70,6 +74,28 @@ namespace BinarySearchTree
                     }
                 }
             }
+        }
+
+        public List<Node> BreadthFirstSearch()
+        {
+            var queue = new Queue();            
+            var list = new List<Node>();
+            var currentNode = root;
+            queue.Enqueue(currentNode);
+            while (queue.Count > 0)
+            {
+                currentNode = (Node)queue.Dequeue();
+                list.Add(currentNode);
+                if(currentNode.Left != null)
+                {
+                    queue.Enqueue(currentNode.Left);
+                }
+                if(currentNode.Right != null)
+                {
+                    queue.Enqueue(currentNode.Right);
+                }
+            }
+            return list;
         }
     }
 }
