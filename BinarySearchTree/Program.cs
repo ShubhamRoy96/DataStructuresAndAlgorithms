@@ -17,6 +17,19 @@ namespace BinarySearchTree
             tree.insert(50);
 
             var BFSTree = tree.BreadthFirstSearch();
+            var queue = new Queue();
+            queue.Enqueue(tree.Root);
+            var BFSTreeRecursive = tree.BreadthFirstSearchRecursive(queue, new List<int>());            
+            foreach(var item in BFSTree)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.WriteLine("\n============================");
+            foreach(var item in BFSTreeRecursive)
+            {
+                Console.Write($"{item} ");
+            }
+
         }
     }
 
@@ -36,22 +49,23 @@ namespace BinarySearchTree
 
     class BinarySearchTree
     {
-        Node root;
+        public Node Root { get; private set; }
         public BinarySearchTree()
         {
-            root = null;
+            Root = null;
         }
 
         public void insert(int nodeValue)
         {
             var newNode = new Node(nodeValue);
-            if (root == null)
+            if (Root == null)
             {
-                root = newNode;
+                Root = newNode;
+                Root = Root;
             }
             else
             {
-                var currentNode = root;
+                var currentNode = Root;
                 while (true)
                 {
                     if(nodeValue < currentNode.Value) //left
@@ -76,16 +90,16 @@ namespace BinarySearchTree
             }
         }
 
-        public List<Node> BreadthFirstSearch()
+        public List<int> BreadthFirstSearch()
         {
             var queue = new Queue();            
-            var list = new List<Node>();
-            var currentNode = root;
+            var list = new List<int>();
+            var currentNode = Root;
             queue.Enqueue(currentNode);
             while (queue.Count > 0)
             {
                 currentNode = (Node)queue.Dequeue();
-                list.Add(currentNode);
+                list.Add(currentNode.Value);
                 if(currentNode.Left != null)
                 {
                     queue.Enqueue(currentNode.Left);
@@ -96,6 +110,25 @@ namespace BinarySearchTree
                 }
             }
             return list;
+        }
+
+        public List<int> BreadthFirstSearchRecursive(Queue queue, List<int> list)
+        {
+            if(queue.Count <= 0)
+            {
+                return list;
+            }
+            var currentNode = (Node)queue.Dequeue();
+            list.Add(currentNode.Value);
+            if(currentNode.Left != null)
+            {
+                queue.Enqueue(currentNode.Left);
+            }
+            if(currentNode.Right != null)
+            {
+                queue.Enqueue(currentNode.Right);
+            }
+            return BreadthFirstSearchRecursive(queue, list);
         }
     }
 }
